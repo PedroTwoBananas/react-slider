@@ -43,6 +43,15 @@ const Slider = (props) => {
                     </div>
                 )
             })}
+            <div>
+                {(props.pags === true)
+                    ?
+                    props.slides.map((slide, index) => {
+                        return (<PaganButton onClick={() => setCurrentImage(index)} key={index}></PaganButton>)
+                    })
+                    :
+                    null}
+            </div>
         </SectionSlide>
 
     )
