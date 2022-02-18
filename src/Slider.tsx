@@ -7,8 +7,10 @@ import {
    LeftArrow,
    RightArrow,
    SlideCounter,
-   PaganButton,
-   PaganSection, ArrowsSection, SlideDiv
+   PaganSection,
+   SlideWrapper,
+   WhiteActivePaganButton,
+   BlackActivePaganButton,
 } from './styles'
 
 interface Props {
@@ -22,6 +24,8 @@ interface Props {
 }
 
 const Slider = (props: Props) => {
+
+   const paganStyle = {background: 'red'}
 
    const [currentImage, setCurrentImage] = useState<number>(0);
    const length: number = props.slides.length;
@@ -67,7 +71,7 @@ const Slider = (props: Props) => {
           <SlideCounter>{currentImage + 1}/{length}</SlideCounter>
           <SectionSlide onMouseEnter={() => (props.stopMouseHover) ? setMouseEvent(!mouseEvent) : null}
                         onMouseLeave={() => (props.stopMouseHover) ? setMouseEvent(!mouseEvent) : null}>
-             <SlideDiv>
+             <SlideWrapper>
                 {(props.navs)
                     ?
                     <><LeftArrow onClick={prevSlide}>←</LeftArrow></>
@@ -78,10 +82,9 @@ const Slider = (props: Props) => {
                    return (
                        <div key={index}>
                           {index === currentImage &&
-                              <Slide><ImgSlide
-
-                                  src={slide.img}
-                              /><TextSlide>{slide.text}</TextSlide>
+                              <Slide>
+                                  <ImgSlide src={slide.img}/>
+                                  <TextSlide>{slide.text}</TextSlide>
                               </Slide>}
                        </div>
                    )
@@ -91,12 +94,21 @@ const Slider = (props: Props) => {
                     <><RightArrow onClick={nextSlide}>→</RightArrow></>
                     :
                     null}
-             </SlideDiv>
+             </SlideWrapper>
              <PaganSection>
                 {(props.pags)
                     ?
                     props.slides.map((slide, index) => {
-                       return (<PaganButton onClick={() => setCurrentImage(index)} key={index}></PaganButton>)
+                       if (currentImage === index) {
+                          return (<BlackActivePaganButton onClick={() => {
+                             setCurrentImage(index);
+                          }} key={index}></BlackActivePaganButton>)
+                       } else {
+                          return (<WhiteActivePaganButton onClick={() => {
+                             setCurrentImage(index);
+                          }} key={index}></WhiteActivePaganButton>)
+                       }
+
                     })
                     :
                     null}

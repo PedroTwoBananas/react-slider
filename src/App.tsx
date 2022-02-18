@@ -3,7 +3,9 @@ import Slider from "./Slider";
 import styled from "styled-components";
 
 const AppWrapper = styled.div`
-  margin: 0;
+  height: 100vh;
+  background: #8ebebe;
+  margin: auto 100px;
   padding: 0;
   display: flex;
   flex-direction: column;

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 export const SectionSlide = styled.section`
-  //position: relative;
   height: 400px;
   width: 400px;
   display: flex;
@@ -10,26 +9,10 @@ export const SectionSlide = styled.section`
   justify-content: center;
   align-items: center;
 `
-export const SlideDiv = styled.div`
- display: flex;
+export const SlideWrapper = styled.div`
+  display: flex;
   flex-direction: row;
   align-content: center;
-`
-
-export const ImgSlide = styled.img`
-  width: 330px;
-  height: 250px;
-  border-radius: 10px;
-`
-
-export const TextSlide = styled.span`
-  position: relative;
-  bottom: 25px;
-  color: white;
-  font-family: 'Lobster';
-  letter-spacing: 2px;
-  background: rgba(0, 0, 0, .5);
-  padding: 2px;
 `
 
 export const Slide = styled.div`
@@ -38,10 +21,20 @@ export const Slide = styled.div`
   align-items: center;
 `
 
-export const ArrowsSection = styled.div`
-  width: 50px;
-  height: 50px;
-  display: flex;
+export const ImgSlide = styled.img`
+  width: 330px;
+  height: 250px;
+  border-radius: 10px;
+  border: 2px solid white;
+`
+
+export const TextSlide = styled.span`
+  position: relative;
+  bottom: 30px;
+  color: white;
+  letter-spacing: 2px;
+  background: rgba(0, 0, 0, .5);
+  padding: 2px;
 `
 
 export const LeftArrow = styled.button`
@@ -49,6 +42,11 @@ export const LeftArrow = styled.button`
   left: 35px;
   top: 40%;
   background: rgba(0, 0, 0, .5);
+
+  &:hover {
+    background: rgba(0, 0, 0);
+  }
+
   color: white;
   width: 25px;
   height: 25px;
@@ -61,6 +59,9 @@ export const RightArrow = styled.button`
   top: 40%;
   right: 35px;
   background: rgba(0, 0, 0, .5);
+  &:hover {
+    background: rgba(0, 0, 0);
+  }
   color: white;
   width: 25px;
   height: 25px;
@@ -73,7 +74,6 @@ export const SlideCounter = styled.span`
   top: 70px;
   right: 140px;
   color: white;
-  font-family: 'Lobster';
   letter-spacing: 2px;
   background: rgba(0, 0, 0, .5);
   padding: 2px;
@@ -90,7 +90,14 @@ export const PaganButton = styled.button`
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1px solid black;
   cursor: pointer;
-  background: rgba(0, 0, 0, .5);
+`
+
+export const WhiteActivePaganButton = styled(PaganButton)`
+  background-color: white;
+`
+
+export const BlackActivePaganButton = styled(PaganButton)`
+  background-color: black;
 `
