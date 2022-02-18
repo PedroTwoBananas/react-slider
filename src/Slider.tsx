@@ -1,15 +1,25 @@
 import React, {useState, useEffect} from "react";
 import {SectionSlide, ImgSlide, TextSlide, Slide, LeftArrow, RightArrow, SlideCounter, PaganButton} from './styles'
 
-const Slider = (props) => {
+interface Props {
+    slides: {img: string, text: string}[],
+    loop: boolean,
+    navs: boolean,
+    pags: boolean,
+    auto: boolean,
+    stopMouseHover: boolean,
+    delay: number,
+}
 
-    const [currentImage, setCurrentImage] = useState(0);
-    const length = props.slides.length;
+const Slider = (props: Props) => {
 
-    const [mouseEvent, setMouseIvent] = useState(false)
+    const [currentImage, setCurrentImage] = useState<number>(0);
+    const length: number = props.slides.length;
+
+    const [mouseEvent, setMouseEvent] = useState<boolean>(false)
 
     const nextSlide = () => {
-        (props.loop === true)
+        (props.loop)
             ?
             setCurrentImage(currentImage === length - 1 ? 0 : currentImage + 1)
             :
@@ -17,7 +27,7 @@ const Slider = (props) => {
     };
 
     const prevSlide = () => {
-        (props.loop === true)
+        (props.loop)
             ?
             setCurrentImage(currentImage === 0 ? length - 1 : currentImage - 1)
             :
@@ -44,7 +54,7 @@ const Slider = (props) => {
 
     return (
         <SectionSlide>
-            {(props.navs === true)
+            {(props.navs)
                 ?
                 <><LeftArrow onClick={prevSlide}>←</LeftArrow><RightArrow onClick={nextSlide}>→</RightArrow></>
                 :
@@ -55,8 +65,8 @@ const Slider = (props) => {
                     <div key={index}>
                         {index === currentImage &&
                             <Slide><ImgSlide
-                                onMouseEnter={() =>(props.stopMouseHover) ? setMouseIvent(!mouseEvent) : null}
-                                onMouseLeave={() =>(props.stopMouseHover) ? setMouseIvent(!mouseEvent) : null}
+                                onMouseEnter={() => (props.stopMouseHover) ? setMouseEvent(!mouseEvent) : null}
+                                onMouseLeave={() => (props.stopMouseHover) ? setMouseEvent(!mouseEvent) : null}
                                 src={slide.img}
                             /><TextSlide>{slide.text}</TextSlide>
                             </Slide>}
@@ -64,7 +74,7 @@ const Slider = (props) => {
                 )
             })}
             <div>
-                {(props.pags === true)
+                {(props.pags)
                     ?
                     props.slides.map((slide, index) => {
                         return (<PaganButton onClick={() => setCurrentImage(index)} key={index}></PaganButton>)
