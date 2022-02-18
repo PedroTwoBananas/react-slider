@@ -28,7 +28,11 @@ const Slider = (props) => {
 
     return (
         <SectionSlide>
-            <><LeftArrow onClick={prevSlide}>←</LeftArrow><RightArrow onClick={nextSlide}>→</RightArrow></>
+            {(props.navs === true)
+                ?
+                <><LeftArrow onClick={prevSlide}>←</LeftArrow><RightArrow onClick={nextSlide}>→</RightArrow></>
+                :
+                null}
             <SlideCounter>{currentImage + 1}/{length}</SlideCounter>
             {props.slides.map((slide, index) => {
                 return (
