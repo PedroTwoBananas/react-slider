@@ -6,6 +6,8 @@ const Slider = (props) => {
     const [currentImage, setCurrentImage] = useState(0);
     const length = props.slides.length;
 
+    const [mouseEvent, setMouseIvent] = useState(false)
+
     const nextSlide = () => {
         (props.loop === true)
             ?
@@ -23,7 +25,7 @@ const Slider = (props) => {
     }
 
     useEffect(() => {
-        if (!props.auto) {
+        if (!props.auto || mouseEvent) {
             return
         }
         let current = currentImage;
@@ -34,7 +36,7 @@ const Slider = (props) => {
             setCurrentImage(current);
         }, (props.delay * 1000));
         return () => clearInterval(timer)
-    }, [props.auto])
+    }, [props.auto, mouseEvent])
 
     if (!Array.isArray(props.slides) || props.slides.length <= 0) {
         return null;
@@ -52,7 +54,11 @@ const Slider = (props) => {
                 return (
                     <div key={index}>
                         {index === currentImage &&
-                            <Slide><ImgSlide src={slide.img}/><TextSlide>{slide.text}</TextSlide>
+                            <Slide><ImgSlide
+                                onMouseEnter={() =>(props.stopMouseHover) ? setMouseIvent(!mouseEvent) : null}
+                                onMouseLeave={() =>(props.stopMouseHover) ? setMouseIvent(!mouseEvent) : null}
+                                src={slide.img}
+                            /><TextSlide>{slide.text}</TextSlide>
                             </Slide>}
                     </div>
                 )
