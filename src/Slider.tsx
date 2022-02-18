@@ -7,11 +7,19 @@ const Slider = (props) => {
     const length = props.slides.length;
 
     const nextSlide = () => {
-        setCurrentImage(currentImage === length - 1 ? 0 : currentImage + 1)
+        (props.loop === true)
+            ?
+            setCurrentImage(currentImage === length - 1 ? 0 : currentImage + 1)
+            :
+            setCurrentImage(currentImage === length - 1 ? currentImage : currentImage + 1)
     };
 
     const prevSlide = () => {
-        setCurrentImage(currentImage === 0 ? length - 1 : currentImage - 1)
+        (props.loop === true)
+            ?
+            setCurrentImage(currentImage === 0 ? length - 1 : currentImage - 1)
+            :
+            setCurrentImage(currentImage === 0 ? currentImage : currentImage - 1)
     }
 
     if (!Array.isArray(props.slides) || props.slides.length <= 0) {
