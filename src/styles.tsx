@@ -37,38 +37,35 @@ export const TextSlide = styled.span`
   padding: 2px;
 `
 
-export const LeftArrow = styled.button`
+export const ArrowDirection = styled.button`
+  display: flex;
+  justify-content: center;
+  background: rgba(0, 0, 0, .5);
+  &:hover {
+    background: rgba(0, 0, 0);
+  }
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, .5);
+  cursor: pointer;
+`
+export const Arrow = styled.span`
+  font-size: 16px;
+  color: white;
+`
+
+export const LeftArrow = styled(ArrowDirection)`
   position: relative;
   left: 35px;
   top: 40%;
-  background: rgba(0, 0, 0, .5);
-
-  &:hover {
-    background: rgba(0, 0, 0);
-  }
-
-  color: white;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, .5);
-  cursor: pointer;
 `
-export const RightArrow = styled.button`
+export const RightArrow = styled(ArrowDirection)`
   position: relative;
   top: 40%;
   right: 35px;
-  background: rgba(0, 0, 0, .5);
-  &:hover {
-    background: rgba(0, 0, 0);
-  }
-  color: white;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, .5);
-  cursor: pointer;
 `
+
 export const SlideCounter = styled.span`
   position: relative;
   top: 70px;

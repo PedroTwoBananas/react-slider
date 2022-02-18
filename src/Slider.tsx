@@ -10,7 +10,7 @@ import {
    PaganSection,
    SlideWrapper,
    WhiteActivePaganButton,
-   BlackActivePaganButton,
+   BlackActivePaganButton, Arrow,
 } from './styles'
 
 interface Props {
@@ -24,8 +24,6 @@ interface Props {
 }
 
 const Slider = (props: Props) => {
-
-   const paganStyle = {background: 'red'}
 
    const [currentImage, setCurrentImage] = useState<number>(0);
    const length: number = props.slides.length;
@@ -74,7 +72,7 @@ const Slider = (props: Props) => {
              <SlideWrapper>
                 {(props.navs)
                     ?
-                    <><LeftArrow onClick={prevSlide}>←</LeftArrow></>
+                    <><LeftArrow onClick={prevSlide}><Arrow>❮</Arrow></LeftArrow></>
                     :
                     null}
 
@@ -91,7 +89,7 @@ const Slider = (props: Props) => {
                 })}
                 {(props.navs)
                     ?
-                    <><RightArrow onClick={nextSlide}>→</RightArrow></>
+                    <><RightArrow onClick={nextSlide}><Arrow>❯</Arrow></RightArrow></>
                     :
                     null}
              </SlideWrapper>
