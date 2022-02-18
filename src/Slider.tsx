@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {SectionSlide, ImgSlide, TextSlide, Slide, LeftArrow, RightArrow, SlideCounter, PaganButton} from './styles'
 
 const Slider = (props) => {
@@ -21,6 +21,20 @@ const Slider = (props) => {
             :
             setCurrentImage(currentImage === 0 ? currentImage : currentImage - 1)
     }
+
+    useEffect(() => {
+        if (!props.auto) {
+            return
+        }
+        let current = currentImage;
+        const timer = setInterval(() => {
+            if (current === length - 1) {
+                current = 0;
+            } else current++;
+            setCurrentImage(current);
+        }, (props.delay * 1000));
+        return () => clearInterval(timer)
+    }, [props.auto])
 
     if (!Array.isArray(props.slides) || props.slides.length <= 0) {
         return null;
