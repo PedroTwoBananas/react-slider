@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+
+
+
 export const SectionSlide = styled.section`
   height: 400px;
   width: 400px;
@@ -19,6 +22,7 @@ export const Slide = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 `
 
 export const ImgSlide = styled.img`
@@ -41,9 +45,11 @@ export const ArrowDirection = styled.button`
   display: flex;
   justify-content: center;
   background: rgba(0, 0, 0, .5);
+
   &:hover {
     background: rgba(0, 0, 0);
   }
+
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -82,19 +88,3 @@ export const PaganSection = styled.div`
   justify-content: center;
 `
 
-export const PaganButton = styled.button`
-  margin: 4px;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: 1px solid black;
-  cursor: pointer;
-`
-
-export const WhiteActivePaganButton = styled(PaganButton)`
-  background-color: white;
-`
-
-export const BlackActivePaganButton = styled(PaganButton)`
-  background-color: black;
-`

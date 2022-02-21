@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Button from "./Button";
 import {
    SectionSlide,
    ImgSlide,
@@ -9,11 +10,11 @@ import {
    SlideCounter,
    PaganSection,
    SlideWrapper,
-   WhiteActivePaganButton,
-   BlackActivePaganButton, Arrow,
+   Arrow
 } from './styles'
 
-interface Props {
+
+interface SliderProps {
    slides: { img: string, text: string }[],
    loop: boolean,
    navs: boolean,
@@ -23,7 +24,8 @@ interface Props {
    delay: number,
 }
 
-const Slider = (props: Props) => {
+
+const Slider = (props: SliderProps) => {
 
    const [currentImage, setCurrentImage] = useState<number>(0);
    const length: number = props.slides.length;
@@ -46,6 +48,10 @@ const Slider = (props: Props) => {
           setCurrentImage(currentImage === 0 ? currentImage : currentImage - 1)
    }
 
+   const changeSlide = (slide) => {
+      setCurrentImage(slide);
+   }
+
    useEffect(() => {
       if (!props.auto || mouseEvent) {
          return
@@ -63,6 +69,7 @@ const Slider = (props: Props) => {
    if (!Array.isArray(props.slides) || props.slides.length <= 0) {
       return null;
    }
+
 
    return (
        <>
@@ -97,16 +104,7 @@ const Slider = (props: Props) => {
                 {(props.pags)
                     ?
                     props.slides.map((slide, index) => {
-                       if (currentImage === index) {
-                          return (<BlackActivePaganButton onClick={() => {
-                             setCurrentImage(index);
-                          }} key={index}></BlackActivePaganButton>)
-                       } else {
-                          return (<WhiteActivePaganButton onClick={() => {
-                             setCurrentImage(index);
-                          }} key={index}></WhiteActivePaganButton>)
-                       }
-
+                       return <Button changeSlide={changeSlide} key={index} index={index} currentImage={currentImage}/>
                     })
                     :
                     null}
