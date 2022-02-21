@@ -3,10 +3,13 @@ import styled, {css} from "styled-components";
 
 interface ButtonProps {
    index: number
+   changeSlide: (slide: number) => void
+   currentImage: number
+
 }
 
 const PaganButton = styled.button(
-    ({index, currentImage}) => css`
+    ({index, currentImage}: {index: number, currentImage: number}) => css`
       margin: 4px;
       width: 15px;
       height: 15px;

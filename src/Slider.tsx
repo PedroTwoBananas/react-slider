@@ -48,7 +48,7 @@ const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderP
           setCurrentImage(currentImage === 0 ? currentImage : currentImage - 1)
    }
 
-   const changeSlide = (slide) => {
+   const changeSlide = (slide: number) => {
       setCurrentImage(slide);
    }
 
