@@ -25,15 +25,15 @@ interface SliderProps {
 }
 
 
-const Slider = (props: SliderProps) => {
+const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderProps) => {
 
    const [currentImage, setCurrentImage] = useState<number>(0);
-   const length: number = props.slides.length;
+   const length: number = slides.length;
 
    const [mouseEvent, setMouseEvent] = useState<boolean>(false)
 
    const nextSlide = () => {
-      (props.loop)
+      (loop)
           ?
           setCurrentImage(currentImage === length - 1 ? 0 : currentImage + 1)
           :
@@ -41,7 +41,7 @@ const Slider = (props: SliderProps) => {
    };
 
    const prevSlide = () => {
-      (props.loop)
+      (loop)
           ?
           setCurrentImage(currentImage === 0 ? length - 1 : currentImage - 1)
           :
@@ -53,7 +53,7 @@ const Slider = (props: SliderProps) => {
    }
 
    useEffect(() => {
-      if (!props.auto || mouseEvent) {
+      if (!auto || mouseEvent) {
          return
       }
       let current = currentImage;
@@ -62,11 +62,11 @@ const Slider = (props: SliderProps) => {
             current = 0;
          } else current++;
          setCurrentImage(current);
-      }, (props.delay * 1000));
+      }, (delay * 1000));
       return () => clearInterval(timer)
-   }, [props.auto, mouseEvent])
+   }, [auto, mouseEvent])
 
-   if (!Array.isArray(props.slides) || props.slides.length <= 0) {
+   if (!Array.isArray(slides) || slides.length <= 0) {
       return null;
    }
 
@@ -74,16 +74,16 @@ const Slider = (props: SliderProps) => {
    return (
        <>
           <SlideCounter>{currentImage + 1}/{length}</SlideCounter>
-          <SectionSlide onMouseEnter={() => (props.stopMouseHover) ? setMouseEvent(!mouseEvent) : null}
-                        onMouseLeave={() => (props.stopMouseHover) ? setMouseEvent(!mouseEvent) : null}>
+          <SectionSlide onMouseEnter={() => (stopMouseHover) ? setMouseEvent(!mouseEvent) : null}
+                        onMouseLeave={() => (stopMouseHover) ? setMouseEvent(!mouseEvent) : null}>
              <SlideWrapper>
-                {(props.navs)
+                {(navs)
                     ?
                     <><LeftArrow onClick={prevSlide}><Arrow>❮</Arrow></LeftArrow></>
                     :
                     null}
 
-                {props.slides.map((slide, index) => {
+                {slides.map((slide, index) => {
                    return (
                        <div key={index}>
                           {index === currentImage &&
@@ -94,16 +94,16 @@ const Slider = (props: SliderProps) => {
                        </div>
                    )
                 })}
-                {(props.navs)
+                {(navs)
                     ?
                     <><RightArrow onClick={nextSlide}><Arrow>❯</Arrow></RightArrow></>
                     :
                     null}
              </SlideWrapper>
              <PaganSection>
-                {(props.pags)
+                {(pags)
                     ?
-                    props.slides.map((slide, index) => {
+                    slides.map((slide, index) => {
                        return <Button changeSlide={changeSlide} key={index} index={index} currentImage={currentImage}/>
                     })
                     :
