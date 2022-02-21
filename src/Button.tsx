@@ -1,24 +1,11 @@
 import React from "react";
-import styled, {css} from "styled-components";
-
+import {PaganButton} from "./styles";
 interface ButtonProps {
    index: number
    changeSlide: (slide: number) => void
    currentImage: number
 
 }
-
-const PaganButton = styled.button(
-    ({index, currentImage}: {index: number, currentImage: number}) => css`
-      margin: 4px;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      border: 1px solid black;
-      cursor: pointer;
-      background-color: ${index === currentImage ? 'black' : 'white'};
-    `)
-
 
 const Button = ({index, changeSlide, currentImage}: ButtonProps) => {
 
