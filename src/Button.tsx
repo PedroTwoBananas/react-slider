@@ -1,25 +1,21 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useState} from "react";
 import {PaganButton} from "./styles";
 
 interface ButtonProps {
    index: number
-   currentImage: number
-   setCurrentImage:(index: number) => void
+   changeSlide: (index: number) => void
+   color: string
 }
 
-const Button = ({index, currentImage, setCurrentImage}: ButtonProps) => {
+const Button = ({index, changeSlide, color }: ButtonProps) => {
+   console.log("button")
 
-   const changeSlide = useCallback(() => {
-      setCurrentImage(index);
-   }, [index])
+   const click = useCallback(() => {
+      changeSlide(index)
+   },[index, changeSlide])
 
    return (
-       <PaganButton
-           index={index}
-           currentImage={currentImage}
-           onClick={changeSlide}
-       >
-       </PaganButton>
+       <PaganButton color={color} onClick={click}></PaganButton>
    )
 }
 

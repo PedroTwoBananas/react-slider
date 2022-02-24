@@ -110,13 +110,13 @@ export const PaganWrapper = styled.div`
 PaganWrapper.displayName = "PaganWrapper"
 
 export const PaganButton = styled.button(
-    ({index, currentImage}: {index: number, currentImage: number}) => css`
+    ({color}) => css`
       margin: 4px;
       width: 15px;
       height: 15px;
       border-radius: 50%;
       border: 1px solid black;
       cursor: pointer;
-      background-color: ${index === currentImage ? 'black' : 'white'};
+      background-color: ${color};
     `)
 PaganButton.displayName = "PaganButton"

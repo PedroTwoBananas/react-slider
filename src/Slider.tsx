@@ -38,6 +38,10 @@ const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderP
           setCurrentImage((currentImage) => currentImage === length - 1 ? currentImage : currentImage + 1)
    }, [loop, length]);
 
+   const changeSlide = useCallback((buttonSlide: number) => {
+      setCurrentImage(() => buttonSlide);
+   }, [])
+
    useEffect(() => {
       if (!auto || mouseEvent) {
          return
@@ -74,7 +78,7 @@ const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderP
              <PaganSection
                  pags={pags}
                  slides={slides}
-                 setCurrentImage={setCurrentImage}
+                 changeSlide={changeSlide}
                  currentImage={currentImage}
              />
           </SectionSlide>

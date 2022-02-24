@@ -5,11 +5,11 @@ import {PaganWrapper} from "./styles";
 interface PaganSectionProps {
    pags: boolean,
    slides: { img: string, text: string }[],
-   currentImage: number,
-   setCurrentImage:(currentImage: number) => void
+   changeSlide: (buttonSlide: number) => void
+   currentImage: number
 }
 
-const PaganSection = ({pags, slides, currentImage, setCurrentImage}: PaganSectionProps) => {
+const PaganSection = ({pags, slides, changeSlide, currentImage}: PaganSectionProps) => {
 
    return (
        <PaganWrapper>
@@ -19,8 +19,8 @@ const PaganSection = ({pags, slides, currentImage, setCurrentImage}: PaganSectio
                  return <Button
                      key={index}
                      index={index}
-                     currentImage={currentImage}
-                     setCurrentImage={setCurrentImage}
+                     changeSlide={changeSlide}
+                     color={currentImage === index ? 'black' : 'white'}
                  />
               })
               :
