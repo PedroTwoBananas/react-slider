@@ -1,18 +1,8 @@
 import React from 'react';
 import Slider from "./Slider";
-import styled from "styled-components";
+import {AppWrapper} from "./styles";
 
-const AppWrapper = styled.div`
-  height: 100vh;
-  background: #8ebebe;
-  margin: auto 100px;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
-
-function App() {
+const App =() => {
 
    const slides = [
       {
@@ -41,4 +31,4 @@ function App() {
    )
 }
 
-export default App;
+export default React.memo(App);

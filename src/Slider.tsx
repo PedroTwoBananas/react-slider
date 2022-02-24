@@ -1,17 +1,8 @@
-import React, {useState, useEffect} from "react";
-import Button from "./Button";
-import {
-   SectionSlide,
-   ImgSlide,
-   TextSlide,
-   Slide,
-   LeftArrow,
-   RightArrow,
-   SlideCounter,
-   PaganSection,
-   SlideWrapper,
-   Arrow
-} from './styles'
+import React, {useState, useEffect, useCallback} from "react";
+import PaganSection from "./PaganSection";
+import {SectionSlide,} from './styles'
+import SlideCounter from "./SlideCounter";
+import SlideWrapper from './SlideWrapper'
 
 
 interface SliderProps {
@@ -24,7 +15,6 @@ interface SliderProps {
    delay: number,
 }
 
-
 const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderProps) => {
 
    const [currentImage, setCurrentImage] = useState<number>(0);
@@ -32,25 +22,21 @@ const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderP
 
    const [mouseEvent, setMouseEvent] = useState<boolean>(false)
 
-   const nextSlide = () => {
+   const prevSlide = useCallback(() => {
       (loop)
           ?
-          setCurrentImage(currentImage === length - 1 ? 0 : currentImage + 1)
+          setCurrentImage((currentImage) => currentImage === 0 ? length - 1 : currentImage - 1)
           :
-          setCurrentImage(currentImage === length - 1 ? currentImage : currentImage + 1)
-   };
+          setCurrentImage((currentImage) => currentImage === 0 ? currentImage : currentImage - 1)
+   }, [loop, length])
 
-   const prevSlide = () => {
+   const nextSlide = useCallback(() => {
       (loop)
           ?
-          setCurrentImage(currentImage === 0 ? length - 1 : currentImage - 1)
+          setCurrentImage((currentImage) => currentImage === length - 1 ? 0 : currentImage + 1)
           :
-          setCurrentImage(currentImage === 0 ? currentImage : currentImage - 1)
-   }
-
-   const changeSlide = (slide: number) => {
-      setCurrentImage(slide);
-   }
+          setCurrentImage((currentImage) => currentImage === length - 1 ? currentImage : currentImage + 1)
+   }, [loop, length]);
 
    useEffect(() => {
       if (!auto || mouseEvent) {
@@ -70,48 +56,30 @@ const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderP
       return null;
    }
 
-
    return (
        <>
-          <SlideCounter>{currentImage + 1}/{length}</SlideCounter>
+          <SlideCounter length={length}
+                        currentImage={currentImage}
+          />
           <SectionSlide onMouseEnter={() => (stopMouseHover) ? setMouseEvent(!mouseEvent) : null}
-                        onMouseLeave={() => (stopMouseHover) ? setMouseEvent(!mouseEvent) : null}>
-             <SlideWrapper>
-                {(navs)
-                    ?
-                    <><LeftArrow onClick={prevSlide}><Arrow>❮</Arrow></LeftArrow></>
-                    :
-                    null}
-
-                {slides.map((slide, index) => {
-                   return (
-                       <div key={index}>
-                          {index === currentImage &&
-                              <Slide>
-                                  <ImgSlide src={slide.img}/>
-                                  <TextSlide>{slide.text}</TextSlide>
-                              </Slide>}
-                       </div>
-                   )
-                })}
-                {(navs)
-                    ?
-                    <><RightArrow onClick={nextSlide}><Arrow>❯</Arrow></RightArrow></>
-                    :
-                    null}
-             </SlideWrapper>
-             <PaganSection>
-                {(pags)
-                    ?
-                    slides.map((slide, index) => {
-                       return <Button changeSlide={changeSlide} key={index} index={index} currentImage={currentImage}/>
-                    })
-                    :
-                    null}
-             </PaganSection>
+                        onMouseLeave={() => (stopMouseHover) ? setMouseEvent(!mouseEvent) : null}
+          >
+             <SlideWrapper
+                 nextSlide={nextSlide}
+                 prevSlide={prevSlide}
+                 slides={slides}
+                 currentImage={currentImage}
+                 navs={navs}
+             />
+             <PaganSection
+                 pags={pags}
+                 slides={slides}
+                 setCurrentImage={setCurrentImage}
+                 currentImage={currentImage}
+             />
           </SectionSlide>
        </>
    )
 }
 
-export default Slider;
+export default React.memo(Slider);

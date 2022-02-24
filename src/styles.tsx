@@ -1,9 +1,19 @@
-import React from "react";
+
 import styled, {css} from "styled-components";
-import Button from "./Button";
+
+export const AppWrapper = styled.div`
+  height: 100vh;
+  background: #8ebebe;
+  margin: auto 100px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+AppWrapper.displayName = 'AppWrapper';
 
 export const SectionSlide = styled.section`
-  height: 400px;
+  height: 320px;
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -12,12 +22,12 @@ export const SectionSlide = styled.section`
 `
 SectionSlide.displayName = 'SectionSlide'
 
-export const SlideWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-content: center;
 `
-SlideWrapper.displayName = "SlideWrapper"
+Wrapper.displayName = "Wrapper"
 
 export const Slide = styled.div`
   display: flex;
@@ -80,24 +90,24 @@ export const RightArrow = styled(ArrowDirection)`
 `
 RightArrow.displayName = "RightArrow"
 
-export const SlideCounter = styled.span`
+export const Counter = styled.span`
   position: relative;
-  top: 70px;
+  top: 40px;
   right: 140px;
   color: white;
   letter-spacing: 2px;
   background: rgba(0, 0, 0, .5);
   padding: 2px;
 `
-SlideCounter.displayName = `SlideCounter`
+Counter.displayName = `Counter`
 
-export const PaganSection = styled.div`
+export const PaganWrapper = styled.div`
   width: 150px;
   height: 50px;
   display: flex;
   justify-content: center;
 `
-PaganSection.displayName = "PaganSection"
+PaganWrapper.displayName = "PaganWrapper"
 
 export const PaganButton = styled.button(
     ({index, currentImage}: {index: number, currentImage: number}) => css`
