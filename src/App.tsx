@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from "./Slider";
 import {AppWrapper} from "./styles";
 
-const App =() => {
+const App = () => {
 
    const slides = [
       {

@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useCallback} from "react";
-import PaganSection from "./PaganSection";
-import {SectionSlide,} from './styles'
+import PaginationSection from "./PaginationSection";
 import SlideCounter from "./SlideCounter";
 import SlideWrapper from './SlideWrapper'
-
+import {SectionSlide,} from './styles'
 
 interface SliderProps {
    slides: { img: string, text: string }[],
@@ -54,7 +53,7 @@ const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderP
          setCurrentImage(current);
       }, (delay * 1000));
       return () => clearInterval(timer)
-   }, [auto, mouseEvent])
+   }, [auto, mouseEvent, delay, currentImage, length])
 
    if (!Array.isArray(slides) || slides.length <= 0) {
       return null;
@@ -75,7 +74,7 @@ const Slider = ({slides, loop, navs, pags, auto, stopMouseHover, delay}: SliderP
                  currentImage={currentImage}
                  navs={navs}
              />
-             <PaganSection
+             <PaginationSection
                  pags={pags}
                  slides={slides}
                  changeSlide={changeSlide}

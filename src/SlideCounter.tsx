@@ -7,8 +7,7 @@ interface SlideCounterProps {
 }
 
 const SlideCounter = ({currentImage, length}: SlideCounterProps) => {
-   // console.log('Counter')
-   return(
+   return (
        <Counter>{currentImage + 1}/{length}</Counter>
    )
 }

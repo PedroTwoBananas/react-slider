@@ -1,5 +1,5 @@
-import React, {useCallback, useState} from "react";
-import {PaganButton} from "./styles";
+import React, {useCallback} from "react";
+import {PaginationButton} from "./styles";
 
 interface ButtonProps {
    index: number
@@ -7,15 +7,14 @@ interface ButtonProps {
    color: string
 }
 
-const Button = ({index, changeSlide, color }: ButtonProps) => {
-   console.log("button")
+const Button = ({index, changeSlide, color}: ButtonProps) => {
 
    const click = useCallback(() => {
       changeSlide(index)
-   },[index, changeSlide])
+   }, [index, changeSlide])
 
    return (
-       <PaganButton color={color} onClick={click}></PaganButton>
+       <PaginationButton color={color} onClick={click}></PaginationButton>
    )
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-import {PaganWrapper} from "./styles";
+import {PaginationWrapper} from "./styles";
 
 interface PaganSectionProps {
    pags: boolean,
@@ -9,10 +9,10 @@ interface PaganSectionProps {
    currentImage: number
 }
 
-const PaganSection = ({pags, slides, changeSlide, currentImage}: PaganSectionProps) => {
+const PaginationSection = ({pags, slides, changeSlide, currentImage}: PaganSectionProps) => {
 
    return (
-       <PaganWrapper>
+       <PaginationWrapper>
           {(pags)
               ?
               slides.map((slide, index) => {
@@ -25,8 +25,8 @@ const PaganSection = ({pags, slides, changeSlide, currentImage}: PaganSectionPro
               })
               :
               null}
-       </PaganWrapper>
+       </PaginationWrapper>
    )
 }
 
-export default React.memo(PaganSection);
+export default React.memo(PaginationSection);

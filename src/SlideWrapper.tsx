@@ -1,7 +1,6 @@
 import React from "react";
 import PrevButton from "./PrevButton";
-import {Wrapper} from "./styles";
-import {ImgSlide, Slide, TextSlide} from "./styles";
+import {ImgSlide, Slide, TextSlide, Wrapper} from "./styles";
 import NextButton from "./NextButton";
 
 interface SlideWrapperProps {

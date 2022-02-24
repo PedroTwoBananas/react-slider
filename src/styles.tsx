@@ -1,4 +1,3 @@
-
 import styled, {css} from "styled-components";
 
 export const AppWrapper = styled.div`
@@ -101,15 +100,15 @@ export const Counter = styled.span`
 `
 Counter.displayName = `Counter`
 
-export const PaganWrapper = styled.div`
+export const PaginationWrapper = styled.div`
   width: 150px;
   height: 50px;
   display: flex;
   justify-content: center;
 `
-PaganWrapper.displayName = "PaganWrapper"
+PaginationWrapper.displayName = "PaginationWrapper"
 
-export const PaganButton = styled.button(
+export const PaginationButton = styled.button(
     ({color}) => css`
       margin: 4px;
       width: 15px;
@@ -119,4 +118,4 @@ export const PaganButton = styled.button(
       cursor: pointer;
       background-color: ${color};
     `)
-PaganButton.displayName = "PaganButton"
+PaginationButton.displayName = "PaginationButton"

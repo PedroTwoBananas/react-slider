@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import {Arrow, LeftArrow} from "./styles";
 
 interface PrevButtonProps {
@@ -6,7 +6,6 @@ interface PrevButtonProps {
 }
 
 const PrevButton = ({prevSlide}: PrevButtonProps) => {
-   console.log('PrevButton')
    return (
        <LeftArrow onClick={prevSlide}><Arrow>❮</Arrow></LeftArrow>
    )

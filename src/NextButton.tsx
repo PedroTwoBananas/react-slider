@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import {Arrow, RightArrow} from "./styles";
 
 interface NextButtonProps {
@@ -6,11 +6,9 @@ interface NextButtonProps {
 }
 
 const NextButton = ({nextSlide}: NextButtonProps) => {
-   console.log('NextButton')
    return (
        <RightArrow onClick={nextSlide}><Arrow>❯</Arrow></RightArrow>
    )
-
 }
 
 export default React.memo(NextButton);
