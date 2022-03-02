@@ -1,15 +1,17 @@
-import React from "react";
-import {Counter} from "./styles";
+import React from 'react'
+import { Counter } from './styles'
 
 interface SlideCounterProps {
-   length: number,
+   length: number
    currentImage: number
 }
 
-const SlideCounter = ({currentImage, length}: SlideCounterProps) => {
+const SlideCounter = ({ currentImage, length }: SlideCounterProps) => {
    return (
-       <Counter>{currentImage + 1}/{length}</Counter>
+      <Counter>
+         {currentImage + 1}/{length}
+      </Counter>
    )
 }
 
-export default React.memo(SlideCounter);
+export default React.memo(SlideCounter)

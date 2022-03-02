@@ -1,5 +1,5 @@
-import React, {useCallback} from "react";
-import {PaginationButton} from "./styles";
+import React, { useCallback } from 'react'
+import { PaginationButton } from './styles'
 
 interface ButtonProps {
    index: number
@@ -7,15 +7,12 @@ interface ButtonProps {
    color: string
 }
 
-const Button = ({index, changeSlide, color}: ButtonProps) => {
-
+const Button = ({ index, changeSlide, color }: ButtonProps) => {
    const click = useCallback(() => {
       changeSlide(index)
    }, [index, changeSlide])
 
-   return (
-       <PaginationButton color={color} onClick={click}></PaginationButton>
-   )
+   return <PaginationButton color={color} onClick={click}></PaginationButton>
 }
 
-export default React.memo(Button);
+export default React.memo(Button)

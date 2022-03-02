@@ -1,14 +1,16 @@
-import React from "react";
-import {Arrow, LeftArrow} from "./styles";
+import React from 'react'
+import { Arrow, LeftArrow } from './styles'
 
 interface PrevButtonProps {
    prevSlide: () => void
 }
 
-const PrevButton = ({prevSlide}: PrevButtonProps) => {
+const PrevButton = ({ prevSlide }: PrevButtonProps) => {
    return (
-       <LeftArrow onClick={prevSlide}><Arrow>❮</Arrow></LeftArrow>
+      <LeftArrow onClick={prevSlide}>
+         <Arrow>❮</Arrow>
+      </LeftArrow>
    )
 }
 
-export default React.memo(PrevButton);
+export default React.memo(PrevButton)
