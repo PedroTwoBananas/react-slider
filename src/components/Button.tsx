@@ -8,11 +8,11 @@ interface ButtonProps {
 }
 
 const Button = ({ index, changeSlide, color }: ButtonProps) => {
-   const click = useCallback(() => {
+   const clickToSlide = useCallback(() => {
       changeSlide(index)
    }, [index, changeSlide])
 
-   return <PaginationButton color={color} onClick={click}></PaginationButton>
+   return <PaginationButton color={color} onClick={clickToSlide}></PaginationButton>
 }
 
 export default React.memo(Button)
