@@ -1,5 +1,5 @@
 import React from 'react'
-import { Arrow, LeftArrow } from './styles'
+import { Arrow, LeftArrow } from '../styles/styles'
 
 interface PrevButtonProps {
    prevSlide: () => void

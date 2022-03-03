@@ -1,6 +1,6 @@
 import React from 'react'
 import Slider from './Slider'
-import { AppWrapper } from './styles'
+import { AppWrapper } from '../styles/styles'
 
 const App = () => {
    const slides = [

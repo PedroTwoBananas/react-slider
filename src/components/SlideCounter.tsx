@@ -1,5 +1,5 @@
 import React from 'react'
-import { Counter } from './styles'
+import { Counter } from '../styles/styles'
 
 interface SlideCounterProps {
    length: number

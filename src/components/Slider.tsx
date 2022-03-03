@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import PaginationSection from './PaginationSection'
 import SlideWrapper from './SlideWrapper'
-import { SectionSlide } from './styles'
+import { SectionSlide } from '../styles/styles'
 
 interface SliderProps {
    slides: { img: string; text: string }[]

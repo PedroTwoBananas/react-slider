@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { PaginationButton } from './styles'
+import { PaginationButton } from '../styles/styles'
 
 interface ButtonProps {
    index: number

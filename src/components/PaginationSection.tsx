@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from './Button'
-import { PaginationWrapper } from './styles'
+import { PaginationWrapper } from '../styles/styles'
 
 interface PaganSectionProps {
    slides: { img: string; text: string }[]

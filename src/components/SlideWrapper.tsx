@@ -1,9 +1,8 @@
 import React from 'react'
 import PrevButton from './PrevButton'
 import Slide from './Slide'
-import { Wrapper } from './styles'
+import { Wrapper } from '../styles/styles'
 import NextButton from './NextButton'
-import SlideCounter from './SlideCounter'
 
 interface SlideWrapperProps {
    nextSlide: () => void

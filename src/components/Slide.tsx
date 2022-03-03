@@ -1,5 +1,5 @@
 import React from 'react'
-import { ImgSlide, SlideStyle, TextSlide } from './styles'
+import { ImgSlide, SlideStyle, TextSlide } from '../styles/styles'
 import SlideCounter from './SlideCounter'
 
 interface SlideProps {
