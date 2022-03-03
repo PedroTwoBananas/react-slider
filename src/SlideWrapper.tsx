@@ -1,7 +1,9 @@
 import React from 'react'
 import PrevButton from './PrevButton'
-import { ImgSlide, Slide, TextSlide, Wrapper } from './styles'
+import Slide from './Slide'
+import { Wrapper } from './styles'
 import NextButton from './NextButton'
+import SlideCounter from './SlideCounter'
 
 interface SlideWrapperProps {
    nextSlide: () => void
@@ -9,6 +11,7 @@ interface SlideWrapperProps {
    slides: { img: string; text: string }[]
    currentImage: number
    navs: boolean
+   length: number
 }
 
 const SlideWrapper = ({
@@ -17,20 +20,20 @@ const SlideWrapper = ({
    slides,
    currentImage,
    navs,
+   length,
 }: SlideWrapperProps) => {
    return (
       <Wrapper>
          {navs ? <PrevButton prevSlide={prevSlide} /> : null}
          {slides.map((slide, index) => {
             return (
-               <Slide key={index}>
-                  {index === currentImage && (
-                     <>
-                        <ImgSlide src={slide.img} />
-                        <TextSlide>{slide.text}</TextSlide>
-                     </>
-                  )}
-               </Slide>
+               <Slide
+                  key={index}
+                  index={index}
+                  slide={slide}
+                  currentImage={currentImage}
+                  length={length}
+               />
             )
          })}
          {navs ? <NextButton nextSlide={nextSlide} /> : null}
@@ -38,4 +41,4 @@ const SlideWrapper = ({
    )
 }
 
-export default React.memo(SlideWrapper)
+export default SlideWrapper

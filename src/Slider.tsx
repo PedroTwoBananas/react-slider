@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import PaginationSection from './PaginationSection'
-import SlideCounter from './SlideCounter'
 import SlideWrapper from './SlideWrapper'
 import { SectionSlide } from './styles'
 
@@ -26,7 +25,19 @@ const Slider = ({
    const [currentImage, setCurrentImage] = useState<number>(0)
    const length: number = slides.length
 
-   const [mouseEvent, setMouseEvent] = useState<boolean>(false)
+   const [isSlideStopped, setMoveSlide] = useState<boolean>(false)
+
+   const mouseLeave = useCallback(() => {
+      if (stopMouseHover) {
+         setMoveSlide(!isSlideStopped)
+      }
+   }, [isSlideStopped])
+
+   const mouseEnter = useCallback(() => {
+      if (stopMouseHover) {
+         setMoveSlide(!isSlideStopped)
+      }
+   }, [isSlideStopped])
 
    const prevSlide = useCallback(() => {
       loop
@@ -48,23 +59,21 @@ const Slider = ({
            )
    }, [loop, length])
 
-   const changeSlide = useCallback((buttonSlide: number) => {
-      setCurrentImage(() => buttonSlide)
+   const changeSlide = useCallback((paginButton: number) => {
+      setCurrentImage(paginButton)
    }, [])
 
    useEffect(() => {
-      if (!auto || mouseEvent) {
+      if (!auto || isSlideStopped) {
          return
       }
       let current = currentImage
       const timer = setInterval(() => {
-         if (current === length - 1) {
-            current = 0
-         } else current++
+         current === length - 1 ? (current = 0) : current++
          setCurrentImage(current)
       }, delay * 1000)
       return () => clearInterval(timer)
-   }, [auto, mouseEvent, delay, currentImage, length])
+   }, [auto, isSlideStopped, delay, currentImage, length])
 
    if (!Array.isArray(slides) || slides.length <= 0) {
       return null
@@ -72,28 +81,22 @@ const Slider = ({
 
    return (
       <>
-         <SlideCounter length={length} currentImage={currentImage} />
-         <SectionSlide
-            onMouseEnter={() =>
-               stopMouseHover ? setMouseEvent(!mouseEvent) : null
-            }
-            onMouseLeave={() =>
-               stopMouseHover ? setMouseEvent(!mouseEvent) : null
-            }
-         >
+         <SectionSlide onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
             <SlideWrapper
                nextSlide={nextSlide}
                prevSlide={prevSlide}
                slides={slides}
                currentImage={currentImage}
                navs={navs}
+               length={length}
             />
-            <PaginationSection
-               pags={pags}
-               slides={slides}
-               changeSlide={changeSlide}
-               currentImage={currentImage}
-            />
+            {pags ? (
+               <PaginationSection
+                  slides={slides}
+                  changeSlide={changeSlide}
+                  currentImage={currentImage}
+               />
+            ) : null}
          </SectionSlide>
       </>
    )

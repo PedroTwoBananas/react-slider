@@ -12,28 +12,26 @@ export const AppWrapper = styled.div`
 AppWrapper.displayName = 'AppWrapper'
 
 export const SectionSlide = styled.section`
-   height: 320px;
-   width: 400px;
    display: flex;
    flex-direction: column;
-   justify-content: center;
    align-items: center;
 `
 SectionSlide.displayName = 'SectionSlide'
 
 export const Wrapper = styled.div`
+   position: relative;
    display: flex;
    flex-direction: row;
    align-content: center;
 `
 Wrapper.displayName = 'Wrapper'
 
-export const Slide = styled.div`
+export const SlideStyle = styled.div`
    display: flex;
    flex-direction: column;
    align-items: center;
 `
-Slide.displayName = 'Slide'
+SlideStyle.displayName = 'SlideStyle'
 
 export const ImgSlide = styled.img`
    width: 330px;
@@ -75,16 +73,16 @@ export const Arrow = styled.span`
 Arrow.displayName = 'Arrow'
 
 export const LeftArrow = styled(ArrowDirection)`
-   position: relative;
-   left: 35px;
-   top: 40%;
+   position: absolute;
+   left: 10px;
+   top: 45%;
 `
 LeftArrow.displayName = 'LeftArrow'
 
 export const RightArrow = styled(ArrowDirection)`
-   position: relative;
-   top: 40%;
-   right: 35px;
+   position: absolute;
+   top: 45%;
+   right: 10px;
 `
 RightArrow.displayName = 'RightArrow'
 
@@ -100,8 +98,8 @@ export const Counter = styled.span`
 Counter.displayName = `Counter`
 
 export const PaginationWrapper = styled.div`
-   width: 150px;
-   height: 50px;
+   //width: 150px;
+   //height: 50px;
    display: flex;
    justify-content: center;
 `

@@ -14,4 +14,4 @@ const SlideCounter = ({ currentImage, length }: SlideCounterProps) => {
    )
 }
 
-export default React.memo(SlideCounter)
+export default SlideCounter
